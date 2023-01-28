@@ -8,7 +8,12 @@
 
 ## User
 All user related operations such as
-
+1. Registering a user
+2. Validating a user (At registration)
+3. Login
+4. Fetching users list
+5. Deleting/Removing a User
+6. Updating a user
 
 ## Group 
 All group related operations such as 
