@@ -11,4 +11,4 @@ Following is the overview design of database related to metadata of Files and fo
 
 **Root folder structure**
 
-![Group User](/docs/assets/images/db/DBSchema-Root folder structure.jpg)
+![Root folder structure](/docs/assets/images/db/DBSchema-rootfolder-structure.jpg)
