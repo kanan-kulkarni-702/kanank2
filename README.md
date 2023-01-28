@@ -10,6 +10,6 @@ This document describes the project details of user operations in initial sectio
 * [Technology](docs/technology.md)
 * Getting started
 * Database Design
-* Rest Api categorization
+* [Rest Api categorization](docs/rest_api_categorization.md)
 * Rest Api sample
 * [Rest Api details](http://3.111.86.134:8092/swagger-ui/index.html)
