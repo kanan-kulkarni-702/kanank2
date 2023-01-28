@@ -6,7 +6,7 @@ Filemanager is a cloud based file management utility using a standard Web browse
 ## Scope
 This document describes the project details of user operations in initial sections and then progresses to in depth details of backend later.
 
-* Use cases
+* [Use cases](docs/use_cases.md)
 * [Technology](docs/technology.md)
 * Getting started
 * Database Design
