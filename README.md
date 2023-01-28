@@ -9,7 +9,7 @@ This document describes the project details of user operations in initial sectio
 * [Use cases](docs/use_cases.md)
 * [Technology](docs/technology.md)
 * Getting started
-* Database Design
+* [Database Design](database_design.md)
 * [Rest Api categorization](docs/rest_api_categorization.md)
 * Rest Api sample
 * [Rest Api details](http://3.111.86.134:8092/swagger-ui/index.html)
