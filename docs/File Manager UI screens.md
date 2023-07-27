@@ -1,5 +1,5 @@
 # Filemanager UI Screens
-<div style="page-break-after: always;"></div>
+<br>
 ![ui](/docs/assets/images/File_manager_UI_screens/screenshot1.jpg)
 ![ui](/docs/assets/images/File_manager_UI_screens/screenshot2.png)
 ![ui](/docs/assets/images/File_manager_UI_screens/screenshot3.png)
