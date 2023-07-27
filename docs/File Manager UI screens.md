@@ -1,5 +1,7 @@
 # Filemanager UI Screens
 
+![UI] (/docs/assets/images/File_manager_UI_screens/Screenshot(5).png)
+
 * [Login page. For already registered user](Filemanager_UI_screens_doc/loginpage.md)
 * [Register/sign up](Filemanager_UI_screens_doc/register.md)
 * [Dashboard view: General User and Auditor](Filemanager_UI_screens_doc/dashboard.md)
