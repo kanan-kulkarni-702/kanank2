@@ -4,6 +4,7 @@
  The actions that a user can perform are handling files and folders using operations such as create, copy, move, delete, rename, upload, update, share and modify share rights. The file or folder stored in the system can be fault detectable or not fault detectable.This selection is done at the time of file or folder creation. Thus, in this application, the data is handled both in Scalar DB and Scalar DL.
 The application uses ScalarDB for storing all the data (files, users, groups, access control data etc)  and Scalar DL to manage the fault detectable data i.e. sensitive files. 
 If a file is selected as fault detectable(hereinafter referred as a BFD file) , the file is managed in ScalarDL along with scalarDB. All the important operations performed on a file are recorded in Scalar DL. Thus, the account history is recorded in a tamper-evident way.. This means that if an account history was altered (either intentionally or not), it is possible to detect this.
+
 Primarily, the application aims to incorporate following features
 a.	Registering data from Web Application
 b.	Detect data tampering
