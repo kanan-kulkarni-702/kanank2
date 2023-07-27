@@ -1,5 +1,5 @@
 # Filemanager UI Screens
---------------------------------------
+<hr style="border:2px solid gray">
 
 ![ui](/docs/assets/images/File_manager_UI_screens/screenshot1.jpg)
 ![ui](/docs/assets/images/File_manager_UI_screens/screenshot2.png)
