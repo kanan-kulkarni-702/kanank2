@@ -1,4 +1,5 @@
 # File Manager Application
+
 	##	Overview 
 	File Manager Application is an application similar to Dropbox or Box and the  basic aim of the application is to manage user files and folders by providing fault detection against deliberate or accidental tampering of the sensitive data.
  The actions that a user can perform are handling files and folders using operations such as create, copy, move, delete, rename, upload, update, share and modify share rights. The file or folder stored in the system can be fault detectable or not fault detectable.This selection is done at the time of file or folder creation. Thus, in this application, the data is handled both in Scalar DB and Scalar DL.
@@ -9,10 +10,11 @@ Primarily, the application aims to incorporate following features
 a.	Registering data from Web Application
 b.	Detect data tampering
 c.	Create faults in the file beforehand and restrict operations on such faulty files.
+
 The File Manager Demo application also provides functionalities such as User Management and Byzantine Fault Management. The User management functionality is provided to create and delete  the system users and assign a role while creating the user. The Byzantine Fault Management Tool is implemented to inject Byzantine Fault  in the file and recover the fault. 
 	## 	Functional Block diagram of the File Manager Application
 The various functionalities in the application are listed below.
-	Authorization and User role management
+	### Authorization and User role management
 The user registration and sign in operation. User creation and deletion and assigning a role to the user.
 There are three roles : General user, Auditor and Administrator.
 Some specific BFD files related operations can be performed by the auditor only.
