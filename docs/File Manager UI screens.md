@@ -10,7 +10,7 @@
 --------------------------------------------
 ## Dashboard view: General User and Auditor
 ![ui](/docs/assets/images/File_manager_UI_screens/screenshot4.png)
-Note: Currently the file preview is displayed only in case of pdf files.
+#### Note: Currently the file preview is displayed only in case of pdf files.
 ------------------------------------------------
 ## Dashboard View: Admin
 ![ui](/docs/assets/images/File_manager_UI_screens/screenshot5.png)
