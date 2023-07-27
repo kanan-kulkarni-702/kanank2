@@ -1,6 +1,6 @@
 # Filemanager UI Screens
 
-![ui] (assets/images/File_manager_UI_screens/screenshot1.png)
+![ui] (assets/images/File_manager_UI_screens/slide2.jpg)
 
 * [Login page. For already registered user](Filemanager_UI_screens_doc/loginpage.md)
 * [Register/sign up](Filemanager_UI_screens_doc/register.md)
