@@ -1,5 +1,5 @@
 # Filemanager UI Screens
-<hr style="border:20px solid gray">
+
 ![ui](/docs/assets/images/File_manager_UI_screens/screenshot1.jpg)
 ----------------------------------------
 ## Login page. For already registered user
