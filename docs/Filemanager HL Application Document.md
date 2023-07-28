@@ -25,8 +25,8 @@ The various functionalities in the application are listed below.
 * Authorization and User role management    
    The user registration and sign in operation. User creation and deletion and assigning a role to the user.  
    There are three roles : General user, Auditor and Administrator.  
-   Some specific BFD files related operations can be performed by the auditor only.  
-*Group Management     
+   Some specific BFD files related operations can be performed by the auditor only.   
+* Group Management     
    Create and delete a group. Add and delete users from the group.  
 * File and folder management     
     The folder operations such as create, copy, move, delete, rename,hide are available.The file operations such as upload, copy, move, delete, 
@@ -35,14 +35,14 @@ The various functionalities in the application are listed below.
     Files and folders can be shared to other users with sharing rights as editor and viewer. The sharing can be done at group level as well.
 * Byzantine fault management (Fault injection and recovery tool)   
     This is a tool available for Administrator on the dashboard and is implemented to inject selected Byzantine fault in a BFD file. This fault is 
-    deliberately created by this tool and the Administrator can recover the already created faults from the List displayed. 
-*User Management (user creation and deletion)    
+    deliberately created by this tool and the Administrator can recover the already created faults from the List displayed.    
+* User Management (user creation and deletion)    
     An Administrator can create a user and assign a role as well as delete a user using this menu option from the dashboard.
-*Mutable data storage management (ScalarDB)     
+* Mutable data storage management (ScalarDB)     
     The mutable data is the data which is not considered as sensitive to alterations. The files which are not created (uploaded) as BFD files, the user 
    related data, the sharing access related data, the group data etc are handled in ScalarDB. In short, all the data of the application is managed 
-   in ScalarDB.
-*Immutable data storage management (ScalarDB and ScalarDL)      
+   in ScalarDB.    
+* Immutable data storage management (ScalarDB and ScalarDL)      
    The files which are uploaded as BFD files are added in ScalarDL and are considered as the Assets. The file operations such as copy, move, delete, 
    rename and update are updated in ScalarDL Ledger as well as Auditor. 
    This allows the data tampering to be identified. 
