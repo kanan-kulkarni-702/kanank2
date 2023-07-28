@@ -13,7 +13,6 @@ important operations performed on a file are recorded in Scalar DL. Thus, the ac
 that if an account history was altered (either intentionally or not), it is possible to detect this.
 
 Primarily, the application aims to incorporate following features
-
 a.Registering data from Web Application
 b.Detect data tampering
 c.Create faults in the file beforehand and restrict operations on such faulty files.
