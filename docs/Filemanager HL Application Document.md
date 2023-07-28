@@ -34,3 +34,5 @@ The mutable data is the data which is not considered as sensitive to alterations
 The files which are uploaded as BFD files are added in ScalarDL and are considered as the Assets. The file operations such as copy, move, delete, rename and update are updated in ScalarDL Ledger as well as Auditor. 
 This allows the data tampering to be identified. 
 The below diagram represents the interaction and relationship between these functionalities.
+
+![architect](/docs/assets/images/File_manager_HL_documentation/Overall_architecture1.jpg)
