@@ -49,3 +49,9 @@ This allows the data tampering to be identified.
 The below diagram represents the interaction and relationship between these functionalities.
 
 ![architect](/docs/assets/images/File_manager_HL_documentation/Overall_architecture1.jpg)
+
+User Stories
+There are three user roles while logging in to the FM App. Based on the user role, the following user stories are defined.  
+| Sr no.| Use case| Description|
+|-----|----|----|
+|1    |Login to the system| A user having valid credentials as a general user can login to the system using  username and  password. The user can then view the dashboard and is able to navigate the file system owned by him or shared to him and perform the file or folder related operations. In case a user has forgotten the password, the user can use ‘ forgot password’  functionality. The user should enter an OTP received  on the registered email. Users can then set a new password.|
