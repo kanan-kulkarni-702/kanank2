@@ -1,6 +1,6 @@
 # File Manager Application
 
-   ## Overview 
+   ## 1. Overview 
 File Manager Application is an application similar to Dropbox or Box and the  basic aim of the application is to manage user files and  
 folders by providing fault detection against deliberate or accidental tampering of the sensitive data.  
 The actions that a user can perform are handling files and folders using operations such as create, copy, move, delete, rename, upload, update,  
@@ -20,7 +20,7 @@ Primarily, the application aims to incorporate following features
 The File Manager Demo application also provides functionalities such as User Management and Byzantine Fault Management. The User management  
 functionality is provided to create and delete  the system users and assign a role while creating the user. The Byzantine Fault Management  
 Tool is implemented to inject Byzantine Fault  in the file and recover the fault.  
-## Functional Block diagram of the File Manager Application
+## 2. Functional Block diagram of the File Manager Application
 The various functionalities in the application are listed below.
 * Authorization and User role management    
    The user registration and sign in operation. User creation and deletion and assigning a role to the user.  
@@ -50,7 +50,7 @@ The various functionalities in the application are listed below.
 
 ![architect](/docs/assets/images/File_manager_HL_documentation/Overall_architecture1.jpg)
 
-## User Stories
+## 3. User Stories
 There are three user roles while logging in to the FM App. Based on the user role, the following user stories are defined.  
 | Sr no.| Use case| Description|
 |-----|----|----|
@@ -80,7 +80,7 @@ There are three user roles while logging in to the FM App. Based on the user rol
 |24   |Inject a BFD fault|Admin can inject a BFD fault by selecting the ‘BFD Management’ menu and clicking on ‘Add new fault’ button.  Admin should now be able to see a list of General users only which have one or more than one non tampered BFD files. Admin can select a General user from the list and folders would be displayed only if they contain non tampered BFD files. Admin should be able to select a BFD file, select a version (few tampering type cases only), and then be able to  select any one tampering type as mentioned below<br />1. File URL in Scalar DB (any version)<br />2. Age in Auditor. (latest version only)<br />3. File Hash in Scalar DB.<br />4. File Hash in Auditor<br />5. File replace on S3<br />6. Delete Age in Auditor (latest version only)<br />7. Delete Id in Auditor (latest version only)<br />An Auditor cannot inject any BFD fault.<br />A General user cannot inject any BFD fault.|
 |25   |Recover a BFD faulted file|Admin can recover a BFD fault from an admin menu which displays all BFD tampered files.<br />An Auditor cannot recover any BFD tampered file.<br />A General user cannot recover any BFD tamered file.||
 
-## User Roles and operations
+## 4. User Roles and operations
 The File manager application has primarily three roles:<br />
       **General User,**
       **Auditor,**
@@ -102,3 +102,13 @@ The user can login to the system using any of the above three roles. Based on th
 |Move a faulty file|N|N|N|N|Y|
 |Copy a faulty file|N|N|N|N|Y|
 |Rename a faulty file |N|N|N|N|Y|
+
+**Other Use cases**
+|Description|User as owner|User as editor|User as Viewer|Admin|
+|----------------|-------------------|---------------------|--------------------|----------|
+|Create a new user with specific role|N|N|N|Y|
+|Delete an existing user|N|N|N|Y|
+|Create a byzantine fault for a selected file|N|N|N|Y|
+|Recover the faulty file created through the system|N|N|N|Y|
+
+## 5. Final UI and navigation
