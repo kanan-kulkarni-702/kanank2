@@ -50,7 +50,7 @@ The various functionalities in the application are listed below.
 
 ![architect](/docs/assets/images/File_manager_HL_documentation/Overall_architecture1.jpg)
 
-User Stories
+## User Stories
 There are three user roles while logging in to the FM App. Based on the user role, the following user stories are defined.  
 | Sr no.| Use case| Description|
 |-----|----|----|
@@ -80,4 +80,10 @@ There are three user roles while logging in to the FM App. Based on the user rol
 |24   |Inject a BFD fault|Admin can inject a BFD fault by selecting the ‘BFD Management’ menu and clicking on ‘Add new fault’ button.  Admin should now be able to see a list of General users only which have one or more than one non tampered BFD files. Admin can select a General user from the list and folders would be displayed only if they contain non tampered BFD files. Admin should be able to select a BFD file, select a version (few tampering type cases only), and then be able to  select any one tampering type as mentioned below<br />1. File URL in Scalar DB (any version)<br />2. Age in Auditor. (latest version only)<br />3. File Hash in Scalar DB.<br />4. File Hash in Auditor<br />5. File replace on S3<br />6. Delete Age in Auditor (latest version only)<br />7. Delete Id in Auditor (latest version only)<br />An Auditor cannot inject any BFD fault.<br />A General user cannot inject any BFD fault.|
 |25   |Recover a BFD faulted file|Admin can recover a BFD fault from an admin menu which displays all BFD tampered files.<br />An Auditor cannot recover any BFD tampered file.<br />A General user cannot recover any BFD tamered file.||
 
-
+## User Roles and operations
+The File manager application has primarily three roles:<br />
+      **General User,**
+      **Auditor,**
+      **Admin,**
+The user can login to the system using any of the above three roles. Based on these roles, the file handling operations vary and the details are mentioned in the below table. 
+**File Operations as per User Role**
