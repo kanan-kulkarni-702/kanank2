@@ -85,5 +85,20 @@ The File manager application has primarily three roles:<br />
       **General User,**
       **Auditor,**
       **Admin,**
-The user can login to the system using any of the above three roles. Based on these roles, the file handling operations vary and the details are mentioned in the below table. 
+The user can login to the system using any of the above three roles. Based on these roles, the file handling operations vary and the details are mentioned in the below table.<br />
 **File Operations as per User Role**
+|Description|User as owner|User as editor|User as Viewer|Admin|Auditor|
+|----------------|--------------------|-------------------|----------------------|---------|----------|
+|Delete BFD audited file or folder|N|N|N|N|Y|
+|Delete non BFD audited file or folder|Y|Y|N|Y|N|
+|Rename a BFD audited or non BFD audited file or folder|Y|Y|N|Y|N|
+|Copy a non BFD audited file|Y|Y|N|Y|N|
+|Copy a BFD audited file|Y|Y|N|Y|N|
+|Move a non BFD audited file|Y|N|N|Y|N|
+|Move a BFD audited file|Y|N|N|Y|N|
+|Update BFD audited file/folder|Y|Y|N|Y|N|
+|Update non BFD audited file or folder|Y|Y|N|Y|N|
+|Delete a faulty file|N|N|N|N|Y|
+|Move a faulty file|N|N|N|N|Y|
+|Copy a faulty file|N|N|N|N|Y|
+|Rename a faulty file |N|N|N|N|Y|
