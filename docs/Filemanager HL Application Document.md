@@ -155,13 +155,13 @@ Following is the list of Rest APIs used for this application and their respectiv
 10  |sendResetPasswordOTP|Send OTP to reset password on existing user’s email.|No|No|
 |11 |updatePassword| Update password for existing user.|No|No|
 |12 |verifyOtp|Validate OTP entered by the user.|No|No|
-|13 |addFile  |Upload a file in a folder.|yes|executeAddItemContractWithFunction|
-|14 |updateFile|upload existing file and update version.|yes|executeUpdateItemContractWithFunction|
+|13 |addFile  |Upload a file in a folder.|Yes|executeAddItemContractWithFunction|
+|14 |updateFile|upload existing file and update version.|Yes|executeUpdateItemContractWithFunction|
 |15 |getFile   |Get all details of the file or folder.|No|No|
 |16 |getFilehistory|Gives file history for all versions.|No|No|
-|17 |copyItems|Copy multiple files from source folder to destination folder.|yes|executeAddItemContractWithFunction|
+|17 |copyItems|Copy multiple files from source folder to destination folder.|Yes|executeAddItemContractWithFunction|
 |18|moveItems|Move multiple files from source folder to destination folder.|No|No|
-|19|renameItem|Rename file or folder.|yes|executeUpdateItemContractWithFunction|
+|19|renameItem|Rename file or folder.|Yes|executeUpdateItemContractWithFunction|
 |20|hideItem|Hides file or folder in the system.|No|No|
 |21|validateItem|Validates file or folder for tampering.|No|No|
 |22|getItemList|Gives all item list from given folder.|No|No|
@@ -169,7 +169,7 @@ Following is the list of Rest APIs used for this application and their respectiv
 |24|searchItem|Gives list of all items from a given folder by search string.|No|No|
 |25|copyFolder|Copy folder from source folder to destination folder.|Yes|executeAddItemContractWithFunction|
 |26|moveFolder|Move folder from source folder to destination folder.|No|No|
-|27|deleteFolder |Delete file or folder from the system. |yes| executeUpdateItemContractWithFunction|
+|27|deleteFolder |Delete file or folder from the system. |Yes| executeUpdateItemContractWithFunction|
 |28|searchGroupList|Gives group list by search string.|No|No|
 |29|searchMembersInGroup|Gives member’s list from group by search string.|No|No|
 |30|getGroupDetails|Gives group details for given group id.|No|No|
