@@ -128,7 +128,7 @@ Refer : [UI_screens](/docs/File_Manager_UI_screens.md) for all the UI screens.
 
 ## 6. Architecture     
 The overall architecture of this application can be viewed as follows.     
-Application architecture diagram
+Application architecture diagram.       
 ![architecture2](/docs/assets/images/File_manager_HL_documentation/application_architect_diagram.jpg)
 
 The application uses ScalarDB and scalarDL ledger as well as auditor. The design has conceptualized a multi-storage system by implementing Ledger <br />
