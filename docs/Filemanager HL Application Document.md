@@ -99,9 +99,9 @@ The user can login to the system using any of the above three roles. Based on th
 |Update BFD audited file/folder|Y|Y|N|Y|N|
 |Update non BFD audited file or folder|Y|Y|N|Y|N|
 |Delete a faulty file|N|N|N|N|Y|
-|Move a faulty file|N|N|N|N|Y|
-|Copy a faulty file|N|N|N|N|Y|
-|Rename a faulty file |N|N|N|N|Y|
+|Move a faulty file|N|N|N|N|N|
+|Copy a faulty file|N|N|N|N|N|
+|Rename a faulty file |N|N|N|N|N|
 
 **Other Use cases**
 |Description|User as owner|User as editor|User as Viewer|Admin|
