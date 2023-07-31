@@ -124,7 +124,7 @@ Screen Navigation for Auditor user
 * Only an auditor can delete a BFD file.  
 
 Screen Navigation for general user   
-Refer : 'File Manager UI screens' for all the UI screens.    
+Refer : [File Manager UI screens](/docs/File Manager UI screens.md) for all the UI screens.    
 
 ## 6. Architecture     
 The overall architecture of this application can be viewed as follows.     
