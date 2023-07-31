@@ -139,6 +139,7 @@ Byzantine Fault Injection Tool (BFD microservice) is implemented as a microservi
 auditor and ScalarDB by accessing the databases externally.    
 
 ## 7. Rest APIs Implemented    
+
 Following is the list of Rest APIs used for this application and their respective functionality.     
 |No|API Name       |Key Functionality|ScalarDL|Contract Used|
 |---|-------------|-----------------|--------|-------------|
