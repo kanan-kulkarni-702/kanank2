@@ -143,18 +143,55 @@ auditor and ScalarDB by accessing the databases externally.
 Following is the list of Rest APIs used for this application and their respective functionality.     
 |No|API Name       |Key Functionality|ScalarDL|Contract Used|
 |---|-------------|-----------------|--------|-------------|
-|1  |registerUser |Register a new user in the system|No|No|API|
-|2  |validateUser |Validate user by entering valid OTP.|No|No|API|
-|3  |login |To login into the system.|No|No|API|
-|4  |getUserList|Get all users list from system.|No|No|API|
-|5  |searchUserList|Get all users list from system by search string.|No|No|API|
+|1  |registerUser |Register a new user in the system|No|No|
+|2  |validateUser |Validate user by entering valid OTP.|No|No|
+|3  |login |To login into the system.|No|No|
+|4  |getUserList|Get all users list from system.|No|No|
+|5  |searchUserList|Get all users list from system by search string.|No|No|
 |6  |updateUser|Update user’s name.|No|No|
 |7  |deleteUser|Delete user from the system.|No|No|
 |8  |logout    |User logout from the system.|No|No|
 |9  |registerUserByAdmin|Register a new user in the system by admin.|No|No|
 10  |sendResetPasswordOTP|Send OTP to reset password on existing user’s email.|No|No|
 |11 |updatePassword| Update password for existing user.|No|No|
+|12 |verifyOtp|Validate OTP entered by the user.|No|No|
+|13 |addFile  |Upload a file in a folder.|yes|executeAddItemContractWithFunction|
+|14 |updateFile|upload existing file and update version.|yes|executeUpdateItemContractWithFunction|
+|15 |getFile   |Get all details of the file or folder.|No|No|
+|16 |getFilehistory|Gives file history for all versions.|No|No|
+|17 |copyItems|Copy multiple files from source folder to destination folder.|yes|executeAddItemContractWithFunction|
+|18|moveItems|Move multiple files from source folder to destination folder.|No|No|
+|19|renameItem|Rename file or folder.|yes|executeUpdateItemContractWithFunction|
+|20|hideItem|Hides file or folder in the system.|No|No|
+|21|validateItem|Validates file or folder for tampering.|No|No|
+|22|getItemList|Gives all item list from given folder.|No|No|
+|23|addFolder|Create a new folder in the system.|No|No|
+|24|searchItem|Gives list of all items from a given folder by search string.|No|No|
+|25|copyFolder|Copy folder from source folder to destination folder.|Yes|executeAddItemContractWithFunction|
+|26|moveFolder|Move folder from source folder to destination folder.|No|No|
+|27|deleteFolder |Delete file or folder from the system. |yes| executeUpdateItemContractWithFunction|
+|28|searchGroupList|Gives group list by search string.|No|No|
+|29|searchMembersInGroup|Gives member’s list from group by search string.|No|No|
+|30|getGroupDetails|Gives group details for given group id.|No|No|
+|31|getGrouplist|Gives all group’s list from the system.|No|No|
+|32|addGroup|Add a new group in the system.|No|No|
+|33|addGroupMembers|Add multiple group members at a time in the group.|No|No|
+|34|deleteGroup|Delete a group from the system.|No|No|
+|35|removeGroupMembers|Removes group members from a group.|No|No|
+|36|getCollaborator|Gives list of collaborator(user/group) for given file or folder|No|No|
+|37|addCollaborator|Add list of collaborators to file or folder.|No|No|
+|38|getPrivilegesList|Gives all privileges list available in the system.|No|No|
+|39|getCollaboratorSearchUserAndGroup|Gives list of collaborators for an item by search string.|No|No|
+|40|deletCollaborator|Delete a collaborator for an item.|No|No|
+|41|updateCollaborator|Updates collaborator privilege for an item.|No|No|
+|42|getBFDHistory|Gives a list of all BFD tampered files from the system.|No|No|
+|43|getFileDetails|Gives all details of file.|No|No|
+|44|getItemListForUser|Gives item’s list owned by  user.|No|No|
+|45|getListOfFaultTypes|Gives list of all fault types available in the system.|No|No|
+|46|getUserList|Gives all user’s list from the system.|No|No|
+|47|injectByznFault|Inject byzantine fault according to fault type to a particular version of a file.|No|No|
+|48|recoverByznFault|Recover byzantine fault to a given version of file.|No|No|
 
-
-
-
+Refer :    
+1. File Manager Rest API Design (Link pending)for all the details and Sequence diagrams of rest APIs implemented.    
+2. ScalarDL Analysis and Implementation(Link pending) which describes how ScalarDL features are used in the File Manager application and how contracts and functions are implemented.    
