@@ -136,7 +136,22 @@ and Auditor in separate dockers.<br />
 The File Manager application maintains all the sensitive data related to BFD files and records of all operations in ScalarDL through contracts.<br /> 
 The files are stored on S3 bucket and are accessed from S3.<br />
 Byzantine Fault Injection Tool (BFD microservice) is implemented as a microservices and it injects different types of faults in ScalarDL Ledger,<br /> 
-auditor and ScalarDB by accessing the databases externally.
+auditor and ScalarDB by accessing the databases externally.    
+
+## 7. Rest APIs Implemented    
+Following is the list of Rest APIs used for this application and their respective functionality.     
+|No|API Name       |Key Functionality|ScalarDL|Contract Used|
+|---|-------------|-----------------|--------|-------------|
+|1  |registerUser |Register a new user in the system|x|No|API|
+|2  |validateUser |Validate user by entering valid OTP.|x|No|API|
+|3  |login |To login into the system.|x|No|API|
+|4  |getUserList|Get all users list from system.|x|No|API|
+|5  |searchUserList|Get all users list from system by search string.|x|No|API|
+|6  |updateUser|Update user’s name.|x|No|
+|7  |deleteUser|Delete user from the system.|x|No|
+|8  |logout    |User logout from the system.|x|No|
+|9  |registerUserByAdmin|Register a new user in the system by admin.|x|No|
+
 
 
 
