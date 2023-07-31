@@ -142,17 +142,17 @@ auditor and ScalarDB by accessing the databases externally.
 Following is the list of Rest APIs used for this application and their respective functionality.     
 |No|API Name       |Key Functionality|ScalarDL|Contract Used|
 |---|-------------|-----------------|--------|-------------|
-|1  |registerUser |Register a new user in the system|x|No|API|
-|2  |validateUser |Validate user by entering valid OTP.|x|No|API|
-|3  |login |To login into the system.|x|No|API|
-|4  |getUserList|Get all users list from system.|x|No|API|
-|5  |searchUserList|Get all users list from system by search string.|x|No|API|
-|6  |updateUser|Update user’s name.|x|No|
-|7  |deleteUser|Delete user from the system.|x|No|
-|8  |logout    |User logout from the system.|x|No|
-|9  |registerUserByAdmin|Register a new user in the system by admin.|x|No|
-10  |sendResetPasswordOTP|Send OTP to reset password on existing user’s email.|x|No|
-|11 |updatePassword| Update password for existing user.|x|No|
+|1  |registerUser |Register a new user in the system|Yes|No|API|
+|2  |validateUser |Validate user by entering valid OTP.|Yes|No|API|
+|3  |login |To login into the system.|Yes|No|API|
+|4  |getUserList|Get all users list from system.|Yes|No|API|
+|5  |searchUserList|Get all users list from system by search string.|Yes|No|API|
+|6  |updateUser|Update user’s name.|Yes|No|
+|7  |deleteUser|Delete user from the system.|Yes|No|
+|8  |logout    |User logout from the system.|Yes|No|
+|9  |registerUserByAdmin|Register a new user in the system by admin.|Yes|No|
+10  |sendResetPasswordOTP|Send OTP to reset password on existing user’s email.|Yes|No|
+|11 |updatePassword| Update password for existing user.|Yes|No|
 
 
 
