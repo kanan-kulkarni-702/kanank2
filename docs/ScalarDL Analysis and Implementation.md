@@ -139,7 +139,7 @@ If the application is designed to use both ScalarDB as well as ScalarDL or more 
 
 **ledger.properties file**
 
-Note: The part written in red color in the below file is added for multi storage databases and for using Functions.
+Note: The part written in brown background color in the below file is added for multi storage databases and for using Functions.
 
 > For ledger
 
