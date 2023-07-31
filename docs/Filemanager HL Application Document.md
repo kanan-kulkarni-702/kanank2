@@ -152,7 +152,7 @@ Following is the list of Rest APIs used for this application and their respectiv
 |8  |logout    |User logout from the system.|x|No|
 |9  |registerUserByAdmin|Register a new user in the system by admin.|x|No|
 10  |sendResetPasswordOTP|Send OTP to reset password on existing user’s email.|x|No|
-|11 |updatePassword Update password for existing user.|x|No|
+|11 |updatePassword| Update password for existing user.|x|No|
 
 
 
