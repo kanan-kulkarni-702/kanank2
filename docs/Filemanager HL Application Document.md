@@ -112,3 +112,30 @@ The user can login to the system using any of the above three roles. Based on th
 |Recover the faulty file created through the system|N|N|N|Y|
 
 ## 5. Final UI and navigation
+Screen Navigation for admin user     
+![screen_navigation_admin](/docs/assets/images/File_manager_HL_documentation/Screen_navigation_admin_user.jpg)
+
+Screen Navigation for Auditor user     
+![screen_navigation_auditor](/docs/assets/images/File_manager_HL_documentation/Screen_navigation_auditor_user.jpg)
+
+*Note*:
+*The auditor can view all the files and folders in the system.   
+*Can perform Copy and Move operation only on a faulty file. (File with Byzantine fault )  
+*Only an auditor can delete a BFD file.  
+
+*Screen Navigation for general user   
+Refer : 'File Manager UI screens' for all the UI screens.    
+
+## 6. Architecture     
+The overall architecture of this application can be viewed as follows.     
+Application architecture diagram
+![architecture](/docs/assets/images/File_manager_HL_documentation/application_architect_diagram.jpg)
+The application uses ScalarDB and scalarDL ledger as well as auditor. The design has conceptualized a multi-storage system by implementing Ledger 
+and Auditor in separate dockers.
+The File Manager application maintains all the sensitive data related to BFD files and records of all operations in ScalarDL through contracts. 
+The files are stored on S3 bucket and are accessed from S3.
+Byzantine Fault Injection Tool (BFD microservice) is implemented as a microservices and it injects different types of faults in ScalarDL Ledger, 
+auditor and ScalarDB by accessing the databases externally.
+
+
+
