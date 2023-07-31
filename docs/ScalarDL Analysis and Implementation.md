@@ -3,7 +3,7 @@
 This document describes the steps while implementing ScalarDL in the File Manager Application.
 File Manager application is an application which manages files and folders along with Byzantine Fault Detection. The important files are managed by using ScalarDL as a middleware between MySQL database and File Manager application.
 
-<font color="green"> Some green text. testing </font>
+The background color is `#ffffff` for light mode and `#000000` for dark mode.    
 
 The file related details are stored as an asset in ScalarDL Ledger as well as Auditor and thus, in case there is any inconsistency in any one of them, fault can be detected by the system.
 
