@@ -3,21 +3,6 @@
 This document describes the steps while implementing ScalarDL in the File Manager Application.
 File Manager application is an application which manages files and folders along with Byzantine Fault Detection. The important files are managed by using ScalarDL as a middleware between MySQL database and File Manager application.
 
-```json
-Heelo there   
-Hello there   
-```
-
-```js
-Heelo there   
-Hello there   
-```
-```html
-Heelo there   
-Hello there   
-```
-
-
 The file related details are stored as an asset in ScalarDL Ledger as well as Auditor and thus, in case there is any inconsistency in any one of them, fault can be detected by the system.
 
 ## Important Processes:
@@ -250,6 +235,7 @@ Note: The part written in red color in the below file is added for multi storage
 
     scalar.dl.ledger.tx_state_management.enabled=
 
+```json
 For database
 
      scalar.db.storage=multi-storage
@@ -267,7 +253,7 @@ For database
      scalar.db.multi_storage.storages.mysql1.password={Your-Password}
      scalar.db.multi_storage.namespace_mapping=coordinator:mysql1,scalardb:mysql1,scalar_file_management:mysql1,scalar:mysql
      scalar.db.multi_storage.default_storage=mysql1
-
+```
 
 The updates required in ledger.properties file are as below:
 
