@@ -19,12 +19,10 @@ The file related details are stored as an asset in ScalarDL Ledger as well as Au
 
 3. **Writing Contracts and Functions as required by the application**
 
+4. **ScalarDL Installation** refer: [Docker Environment](/docs/installation_with_docker.md)
 
-1. ScalarDL Installation
-Refer: [Docker Environment](/docs/installation_with_docker.md)
-
-2. Setup ScalarDL Ledger and Auditor
-(Refer:  https://github.com/scalar-labs/scalardl/blob/master/docs/ca/caclient-getting-started.md)
+5. **Setup ScalarDL Ledger and Auditor**   
+ refer:  https://github.com/scalar-labs/scalardl/blob/master/docs/ca/caclient-getting-started.md)
 
 Prerequisites:
 
@@ -513,36 +511,3 @@ To Execute the Client we are using ClientService
     }
     //
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
