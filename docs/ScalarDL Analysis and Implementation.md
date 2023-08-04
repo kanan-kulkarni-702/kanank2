@@ -21,7 +21,7 @@ The file related details are stored as an asset in ScalarDL Ledger as well as Au
 
 
 1. ScalarDL Installation
-Refer: https://github.com/scalar-labs/scalardl/blob/master/docs/installation-with-docker.md
+Refer: [Docker_installation](/docs/installation_with_docker.md)
 
 2. Setup ScalarDL Ledger and Auditor
 (Refer:  https://github.com/scalar-labs/scalardl/blob/master/docs/ca/caclient-getting-started.md)
@@ -29,10 +29,16 @@ Refer: https://github.com/scalar-labs/scalardl/blob/master/docs/installation-wit
 Prerequisites:
 
 Installation of golang-cfssl:
-Cmd:   sudo apt install golang-cfssl 
+cmd:   
+```bash
+sudo apt install golang-cfssl 
+```
 
 Execution of docker-compose-cfssl.yml file:
-CMD: docker compose -f docker-compose-cfssl.yml up
+cmd: 
+```bash
+docker compose -f docker-compose-cfssl.yml up
+```
 
 The file docker-compose-cfssl.yml is created by us and contains three images : 
 
@@ -277,7 +283,10 @@ in the docker-compose-ledger-auditor.yml  which is provided along with the docum
 In case, ScalarDL and ScalarDB are not used together in the application (  in other words, not using Functions in the application) then it is required to remove this statement from the  docker-compose-ledger-auditor.yml file.
 
 ## Run Scalar DL Compose File 
-Command: **sudo docker compose -f {compose-file.yml} up -d**
+Command: 
+```bash
+sudo  docker  compose  -f  {compose-file.yml}  up  -d
+```
 
 **Result:**
 1)	Ledger and auditor certificates have been registered with each other. So the ledger and auditor can talk.
