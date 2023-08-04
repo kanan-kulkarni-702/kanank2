@@ -28,16 +28,15 @@ Refer: [Docker Environment](/docs/installation_with_docker.md)
 
 Prerequisites:
 
-Installation of golang-cfssl:
-cmd:   
+Installation of golang-cfssl:   
 ```bash
-sudo apt install golang-cfssl 
+$ sudo apt install golang-cfssl 
 ```
 
 Execution of docker-compose-cfssl.yml file:
 cmd: 
 ```bash
-docker compose -f docker-compose-cfssl.yml up
+$ docker compose -f docker-compose-cfssl.yml up
 ```
 
 The file docker-compose-cfssl.yml is created by us and contains three images : 
@@ -89,7 +88,7 @@ Please note that we have already provided a modified version of the compose file
 
 Note:
 
-   1. Refer to the Compose File `docker-compose-ledger-auditor.yml` in the shared folder - ScalarDL withMySQL Reference.
+   1. Refer to the Compose File `docker-compose-ledger-auditor.yml` in the shared folder - ScalarDL with MySQL Reference.
    2. MySQL DB is used for Ledger & Auditor.
    3. It is assumed that you have generated certificates for Ledger and Auditor and kept them in the fixture folder inside 'ScalarDL withMySQL 
       Reference'.
@@ -122,125 +121,97 @@ Before running the compose files, it is required to add the necessary details fo
     
 
    2)	Update `scalardb-ledger.properties` file for loading  auditor-schema in Auditor(DB)
+```bash
+ # The JDBC URL  
+ scalar.db.contact_points=jdbc:mysql://mysql_container_forAuditor:3306/   
+ # The username and password   
+ scalar.db.username=root    
+ scalar.db.password=root    
+ # JDBC storage implementation   
+ scalar.db.storage=jdbc    
+ ```
 
-> The JDBC URL
-
-    scalar.db.contact_points=jdbc:mysql://mysql_container_forAuditor:3306/
-    
-> The username and password
-
-    scalar.db.username=root
-    scalar.db.password=root
-    
-> JDBC storage implementation
-
-    scalar.db.storage=jdbc
-
-   3)	Changes required in ledger.properties file for using ScalarDL Functions 
-
-If the application is designed to use both ScalarDB as well as ScalarDL or more specifically, if ScalarDL functions are used in the application then it is required to update ledger.properties file and then override the existing  ledger.properties in the below image:
-       
+   3)	Changes required in ledger.properties file for using ScalarDL Functions    
    `ghcr.io/scalar-labs/scalar-ledger:3.6.0`
-
+If the application is designed to use both ScalarDB as well as ScalarDL or more specifically, if ScalarDL functions are used in the application then it is required to update ledger.properties file and then override the existing  ledger.properties in the below image:
+     
 
 **ledger.properties file**
 
 Note: The part written in brown background color in the below file is added for multi storage databases and for using Functions.
+```bash
+# For ledger
+# Name of ledger ("Scalar Ledger" by default). It is used to identify a ledger.
+scalar.dl.ledger.name=Scalar Ledger
 
-> For ledger
+# Namespace of ledger tables ("scalar" by default).
+scalar.dl.ledger.namespace=scalar
 
-> Name of ledger ("Scalar Ledger" by default). It is used to identify a ledger.
+# Server port (50051 by default).   
+scalar.dl.ledger.server.port=50051
 
-    scalar.dl.ledger.name=Scalar Ledger
+# Server privileged port (50052 by default).
+scalar.dl.ledger.server.privileged_port=50052
 
-> Namespace of ledger tables ("scalar" by default).
+# Server admin port (50053 by default).
+scalar.dl.ledger.server.admin_port=50053
 
-    scalar.dl.ledger.namespace=scalar
+# Prometheus exporter port (8080 by default). Prometheus exporter will not be started if a negative number is given.
+scalar.dl.ledger.server.prometheus_exporter_port=8080
 
-> Server port (50051 by default).
+# A flag to enable TLS between clients and servers (false by default).
+scalar.dl.ledger.server.tls.enabled=false
 
-    scalar.dl.ledger.server.port=50051
+# Certificate chain file used for TLS communication.
+# It can be empty if scalar.dl.ledger.server.tls.enabled=false.
+scalar.dl.ledger.server.tls.cert_chain_path=
 
-> Server privileged port (50052 by default).
+#  Private key file used for TLS communication.
+#  It can be empty if scalar.dl.ledger.server.tls.enabled=false .
+scalar.dl.ledger.server.tls.private_key_path=
 
-    scalar.dl.ledger.server.privileged_port=50052
+# A flag to enable asset proof that is used to verify assets (false by default).
+# This feature must be enabled in both client and server.
+scalar.dl.ledger.proof.enabled=true
 
-> Server admin port (50053 by default).
+# Private key file used for signing a proof entry.
+scalar.dl.ledger.proof.private_key_path=/scalar/ledger-key.pem
 
-    scalar.dl.ledger.server.admin_port=50053
+# Required if scalar.dl.ledger.proof.enabled is true and scalar.dl.ledger.proof.private_key_path is empty.
+# PEM-encoded private key data.
+scalar.dl.ledger.proof.private_key_pem=
 
-> Prometheus exporter port (8080 by default). Prometheus exporter will not be started if a negative number is given.
+#  A flag to enable a function for a mutable database (true by default).
+scalar.dl.ledger.function.enabled=true
 
-    scalar.dl.ledger.server.prometheus_exporter_port=8080
+# A flag to use nonce as a transaction ID (true by default).
+scalar.dl.ledger.nonce_txid.enabled=true
 
-> A flag to enable TLS between clients and servers (false by default).
+# A flag to use Auditor (disabled by default).
+scalar.dl.ledger.auditor.enabled=true
 
-    scalar.dl.ledger.server.tls.enabled=false
+# Auditor certificate holder ID ("auditor" by default).
+scalar.dl.ledger.auditor.cert_holder_id=auditor
 
-> Certificate chain file used for TLS communication.
-> It can be empty if scalar.dl.ledger.server.tls.enabled=false.
+#  Auditor certificate version (1 by default).
+scalar.dl.ledger.auditor.cert_version=1
 
-    scalar.dl.ledger.server.tls.cert_chain_path=
+#  A flag to use ordering for better tamper-evidence (false by default).
+# Ordering feature is deprecated and will be removed in release 4.0.0.
+scalar.dl.ledger.ordering.enabled=false
 
-> Private key file used for TLS communication.
-> It can be empty if scalar.dl.ledger.server.tls.enabled=false .
+# Binary names of contracts that can be executed
+scalar.dl.ledger.executable_contracts=
 
-    scalar.dl.ledger.server.tls.private_key_path=
+#  A flag to access the asset table directly without going through asset_metadata (false by default).
+#  This should be set to false for some databases such as Cassandra that incur multiple database lookups for scanning a clustering key with limit > 1.
+#  This should be set to true if an underlying database can utilize index scan to access the latest asset entry efficiently.
+scalar.dl.ledger.direct_asset_access.enabled=
 
-> A flag to enable asset proof that is used to verify assets (false by default).
-> This feature must be enabled in both client and server.
-
-    scalar.dl.ledger.proof.enabled=true
-
-> Private key file used for signing a proof entry.
-
-    scalar.dl.ledger.proof.private_key_path=/scalar/ledger-key.pem
-
-> Required if scalar.dl.ledger.proof.enabled is true and scalar.dl.ledger.proof.private_key_path is empty.
-> PEM-encoded private key data.
-
-    scalar.dl.ledger.proof.private_key_pem=
-
-> A flag to enable a function for a mutable database (true by default).
-
-    scalar.dl.ledger.function.enabled=true
-
-> A flag to use nonce as a transaction ID (true by default).
-
-    scalar.dl.ledger.nonce_txid.enabled=true
-
-> A flag to use Auditor (disabled by default).
-
-    scalar.dl.ledger.auditor.enabled=true
-
-> Auditor certificate holder ID ("auditor" by default).
-
-    scalar.dl.ledger.auditor.cert_holder_id=auditor
-
-> Auditor certificate version (1 by default).
-
-    scalar.dl.ledger.auditor.cert_version=1
-
-> A flag to use ordering for better tamper-evidence (false by default).
-> Ordering feature is deprecated and will be removed in release 4.0.0.
-
-    scalar.dl.ledger.ordering.enabled=false
-
-> Binary names of contracts that can be executed
-
-    scalar.dl.ledger.executable_contracts=
-
-> A flag to access the asset table directly without going through asset_metadata (false by default).
-> This should be set to false for some databases such as Cassandra that incur multiple database lookups for scanning a clustering key with limit > 1.
-> This should be set to true if an underlying database can utilize index scan to access the latest asset entry efficiently.
-
-    scalar.dl.ledger.direct_asset_access.enabled=
-
-> A flag to manage transaction states by Ledger (false by default).
-> This must be enabled when using JdbcTransactionManager as the transaction manager of Scalar DB.
-
-    scalar.dl.ledger.tx_state_management.enabled=
-
+#  A flag to manage transaction states by Ledger (false by default).
+#  This must be enabled when using JdbcTransactionManager as the transaction manager of Scalar DB.
+scalar.dl.ledger.tx_state_management.enabled=
+```
 ```json
 For database
 
