@@ -1,8 +1,7 @@
 # How to install ScalarDL in your local environment with Docker
 
-This document shows how to set up a local environment that runs ScalarDL
-along with the back-end Cassandra server using [Docker
-Compose](https://docs.docker.com/compose/).
+This document shows how to set up a local Docker environment to be used with ScalarDL
+ [DockerCompose](https://docs.docker.com/compose/).
 
 ## Prerequisites
 

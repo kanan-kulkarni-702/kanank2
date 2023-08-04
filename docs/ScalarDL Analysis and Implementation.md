@@ -21,7 +21,7 @@ The file related details are stored as an asset in ScalarDL Ledger as well as Au
 
 
 1. ScalarDL Installation
-Refer: [Docker_installation](/docs/installation_with_docker.md)
+Refer: [Docker Environment](/docs/installation_with_docker.md)
 
 2. Setup ScalarDL Ledger and Auditor
 (Refer:  https://github.com/scalar-labs/scalardl/blob/master/docs/ca/caclient-getting-started.md)
