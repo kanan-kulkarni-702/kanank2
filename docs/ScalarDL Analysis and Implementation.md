@@ -483,9 +483,9 @@ Reference:
 https://github.com/scalar-labs/scalardl/blob/master/docs/how-to-write-function.md
 
 
-### 4. Service used by the application to interact with ScalarDL
+## 4. Service used by the application to interact with ScalarDL
 
-Application used the below service to interact with scalatDL - connect bin
+Application uses the below service to interact with ScalarDL - connect bin
 
 To Execute the Client we are using ClientService
 ```bash
