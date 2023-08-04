@@ -59,7 +59,7 @@ $ cfssl sign -remote "localhost:8888" -profile "client" client.csr | cfssljson -
 
 The above process creates client.pem which is a certificate for client application.
 
-After Running this command the files created are listed as below:
+After running this command the files created are listed as below:
 ```bash
 $ ls -l
 client-cert.json
@@ -67,7 +67,7 @@ client-key.pem
 client.csr
 client.pem
 ```
-We require three certificates - for ledger, auditor, and client (i.e application)
+We require three certificates: Ledger, Auditor, and Client (i.e application)
 
 Hence, the above commands are executed each for Ledger and Auditor. The name of the key is changed from ‘client’ to ‘ledger’ in case of Ledger certificate and is changed from ‘ client’ to auditor’ in case of Auditor certificate.
 
@@ -224,9 +224,9 @@ scalar.db.multi_storage.default_storage=mysql1
 
 The updates required in ledger.properties file are as below:
 
-As we are using functions to access ScalarDb, the scalarDB instance details need to be configured in ledger.properties file.
+As we are using functions to access ScalarDB, the ScalarDB instance details need to be configured in ledger.properties file.
 Hence , mysql and mysql1
-  1)  We have to mention two configurations for MySQL ( one for Default ScalarDL Ledger & another for ScalarDb (which you are using in the 
+  1)  We have to mention two configurations for MySQL ( one for Default ScalarDL Ledger & another for ScalarDB (which you are using in the 
       application ))
   2)	Change the username, password, and contact_points accordingly 
   3)	Mention the schemaName and storage name respectively in the ‘scalar.db.multi_storage.namespace_mapping’ property.
@@ -236,14 +236,14 @@ Hence , mysql and mysql1
      the default storage.
 
 **Note:**
-Check the statement
+Check the following statement
 
- ./ledger.properties:/scalar/ledger/ledger.properties
+ `./ledger.properties:/scalar/ledger/ledger.properties`
 in the docker-compose-ledger-auditor.yml  which is provided along with the documentation. This statement is actually added to override existing ledger.properties.
 
 In case, ScalarDL and ScalarDB are not used together in the application (  in other words, not using Functions in the application) then it is required to remove this statement from the  docker-compose-ledger-auditor.yml file.
 
-## Run Scalar DL Compose File 
+## Run ScalarDL compose file 
 Command: 
 ```bash
 $ sudo  docker  compose  -f  {compose-file.yml}  up  -d
@@ -252,10 +252,10 @@ $ sudo  docker  compose  -f  {compose-file.yml}  up  -d
 **Result:**
 1)	Ledger and auditor certificates have been registered with each other. So the ledger and auditor can talk.
 2)	Respective Schema has been loaded (as configured in compose file) in Ledger Container, Auditor Container 
-3)	Multiple ports gets exposed like 9901,50051,50052(ledger-envoy) ,9902,40051,40052(scalar-envoy) and much more on that instance 
+3)	Multiple ports gets exposed like 9901, 50051, 50052(ledger-envoy) , 9902, 40051, 40052(scalar-envoy) and much more on that instance 
 
 
- ## C. Registering Contracts/Functions To Scalar DL
+ ## C. Registering Contracts/Functions To ScalarDL
 
 We are using contracts and functions of ScalarDL. The functions are used in case scalarDB operation is successful and DL operation fails. We are keeping audit status as 3. But if DL operation fails, then control is lost. Initially, we are keeping audit status 3, and then after both the operations are successful, we change the status to 1 via the UpdateFunction.
 
@@ -269,8 +269,7 @@ https://github.com/scalar-labs/scalardl/blob/master/docs/how-to-write-function.m
 https://github.com/scalar-labs/scalardl/blob/master/docs/getting-started-auditor.md
 
 ### Modify client.properties
-This file is being used by the application. We need to mention the client certificate path and key in this document. This is necessary for interacting with ScalarDL. The application is authenticated by DL, and the app can perform DL operations.
-
+This file is being used by the application. We need to mention the client certificate path and key in this document. This is necessary for interacting with ScalarDL. The application is authenticated by ScalarDL, and the app can perform ScalarDL operations.
 The first thing you need to do is configure the Client SDK. The following sample properties are required properties for the Client SDK to interact with ScalarDL Ledger.
 
 ## Refer: 
@@ -333,31 +332,26 @@ scalar.dl.client.auditor.linearizable_validation.contract_id=validate-ledger-1
     scalar.dl.client.auditor.linearizable_validation.contract_id= 
 
 
-## 3. Writing Contracts and Functions as Required by the Application
+## 3. Writing Contracts and Functions as required by the application
 We are using contracts and functions in this application. The Contracts are used to manage data in ScalarDL, and functions are used when we are accessing ScalarDB from ScalarDL.
 
-### A. Contracts Used in Application
+### A. Contracts used in the application
 The contracts created and used in the application are:
 
-1) Get-all-age
+1) **Get-all-age**
+   * Get a list of ages for a given asset ID.
+2) **Get-asset**
+   * Get JSON data for a given asset ID and age.
+3) **Add-item**
+   *  To add items in ScalarDL, only files which are added in the BFD folder.
+   *  This contract is used when a file asset entry is to be added to ScalarDL.
+4) **Update-item**
+   * Rename, update file, delete operations call this contract.
+   * The file data in the JSON is modified based on the operation.
+5) **Validate-ledger**
+   * Modified existing Validate contract.
 
-  -  Get a list of ages for a given asset ID.
-2) Get-asset
-
-  -  Get JSON data for a given asset ID and age.
-3) Add-item
-
-  - To add items in ScalarDL, only files which are added in the BFD folder.
-  - This contract is used when a file asset entry is to be added to ScalarDL.
-4) Update-item
-
-  - Rename, update file, delete operations call this contract.
-  - The file data in the JSON is modified based on the operation.
-5) Validate-ledger
-
-  - Modified existing Validate contract.
-
-Validate-ledger Contract
+####  Validate-ledger Contract
 
 The application mainly aims at detecting a fault in case of a BFD file.
 
@@ -372,7 +366,7 @@ https://github.com/scalar-labs/scalardl-java-client-sdk/blob/master/src/main/jav
 
 
  
-### Validate-ledger contract in the application
+####  Validate-ledger contract in the application
 ```bash
 public class Validator extends JacksonBasedContract {
 
@@ -417,13 +411,13 @@ public class Validator extends JacksonBasedContract {
 }
 ```
 
-### Process to setup the contracts
+####  Process to setup the contracts
 
 1.	Create a folder such as ‘config’ in the project and place the client.pem, client-key.pem
 
 2.	Then create contracts.toml to mention all contract-id, contract-binary-name, contract-class-file
 
-### Ex
+Ex
 ```bash
 [[contracts]]
 contract-id = "get-all-age"
@@ -461,11 +455,11 @@ Note:  SCALAR_SDK_HOME is the path of Project, which has client sdk, client.prop
 
 The parameters to be assigned in the above file are:
 
-### /register-cert : 	
+#### /register-cert : 	
 It will register the certificate of client (i.e application)
-### /register-contracts: 	
+#### /register-contracts: 	
 provide a contract/list of contracts in a file such as contracts.toml and the client certificate to get register the contracts.
-### /register-functions:	
+#### /register-functions:	
 provide a function/list of contracts in a file such as functions.toml and the client properties file to get register functions.
 
 5.	Execute the File using the below statement.
