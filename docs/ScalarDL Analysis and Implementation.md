@@ -31,8 +31,7 @@ Installation of golang-cfssl:
 $ sudo apt install golang-cfssl 
 ```
 
-Execution of docker-compose-cfssl.yml file:
-cmd: 
+Execution of docker-compose-cfssl.yml file:   
 ```bash
 $ docker compose -f docker-compose-cfssl.yml up
 ```
