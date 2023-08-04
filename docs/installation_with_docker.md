@@ -1,4 +1,4 @@
-# How to install ScalarDL in your local environment with Docker
+# Docker environment setup before using ScalaarDL
 
 This document shows how to set up a local Docker environment to be used with ScalarDL
  [DockerCompose](https://docs.docker.com/compose/).
