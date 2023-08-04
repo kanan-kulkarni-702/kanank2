@@ -104,21 +104,15 @@ _Please note that we have already provided a modified version of the compose fil
 Before running the compose files, it is required to add the necessary details for loading ledger and auditor schemas in the respective properties files.
 
    1)	Update `scalardb-ledger.properties` file for Loading ledger schema in Ledger(DB)
-      
-
->  The JDBC URL
-
-    scalar.db.contact_points=jdbc:mysql://mysql_container_forLedger:3306/
-
->  The username and password
-
-    scalar.db.username=root
-    scalar.db.password=root
-
->  JDBC storage implementation
-
-    scalar.db.storage=jdbc
-    
+```bash
+#  The JDBC URL
+scalar.db.contact_points=jdbc:mysql://mysql_container_forLedger:3306/
+#  The username and password
+scalar.db.username=root
+scalar.db.password=root
+#  JDBC storage implementation
+scalar.db.storage=jdbc
+```    
 
    2)	Update `scalardb-ledger.properties` file for loading  auditor-schema in Auditor(DB)
 ```bash
@@ -204,7 +198,8 @@ scalar.dl.ledger.ordering.enabled=false
 scalar.dl.ledger.executable_contracts=
 
 #  A flag to access the asset table directly without going through asset_metadata (false by default).
-#  This should be set to false for some databases such as Cassandra that incur multiple database lookups for scanning a clustering key with limit > 1.
+#  This should be set to false for some databases such as Cassandra that incur multiple database lookups for scanning 
+# a clustering key with limit > 1.
 #  This should be set to true if an underlying database can utilize index scan to access the latest asset entry efficiently.
 scalar.dl.ledger.direct_asset_access.enabled=
 
@@ -213,23 +208,21 @@ scalar.dl.ledger.direct_asset_access.enabled=
 scalar.dl.ledger.tx_state_management.enabled=
 ```
 ```json
-For database
+# For database
+scalar.db.storage=multi-storage
+scalar.db.multi_storage.storages=mysql,mysql1
 
-     scalar.db.storage=multi-storage
-     scalar.db.multi_storage.storages=mysql,mysql1
+scalar.db.multi_storage.storages.mysql.storage=jdbc
+scalar.db.multi_storage.storages.mysql.contact_points=jdbc:mysql://mysql_container_forLedger:3306/
+scalar.db.multi_storage.storages.mysql.username=root
+scalar.db.multi_storage.storages.mysql.password=root
 
-     scalar.db.multi_storage.storages.mysql.storage=jdbc
-     scalar.db.multi_storage.storages.mysql.contact_points=jdbc:mysql://mysql_container_forLedger:3306/
-     scalar.db.multi_storage.storages.mysql.username=root
-     scalar.db.multi_storage.storages.mysql.password=root
-
-
-     scalar.db.multi_storage.storages.mysql1.storage=jdbc
-     scalar.db.multi_storage.storages.mysql1.contact_points=jdbc:mysql://{SCALAR-DB-IP}:3306/
-     scalar.db.multi_storage.storages.mysql1.username={Your-UserName}
-     scalar.db.multi_storage.storages.mysql1.password={Your-Password}
-     scalar.db.multi_storage.namespace_mapping=coordinator:mysql1,scalardb:mysql1,scalar_file_management:mysql1,scalar:mysql
-     scalar.db.multi_storage.default_storage=mysql1
+scalar.db.multi_storage.storages.mysql1.storage=jdbc
+scalar.db.multi_storage.storages.mysql1.contact_points=jdbc:mysql://{SCALAR-DB-IP}:3306/
+scalar.db.multi_storage.storages.mysql1.username={Your-UserName}
+scalar.db.multi_storage.storages.mysql1.password={Your-Password}
+scalar.db.multi_storage.namespace_mapping=coordinator:mysql1,scalardb:mysql1,scalar_file_management:mysql1,scalar:mysql
+scalar.db.multi_storage.default_storage=mysql1
 ```
 
 The updates required in ledger.properties file are as below:
@@ -256,7 +249,7 @@ In case, ScalarDL and ScalarDB are not used together in the application (  in ot
 ## Run Scalar DL Compose File 
 Command: 
 ```bash
-sudo  docker  compose  -f  {compose-file.yml}  up  -d
+$ sudo  docker  compose  -f  {compose-file.yml}  up  -d
 ```
 
 **Result:**
@@ -286,58 +279,52 @@ The first thing you need to do is configure the Client SDK. The following sample
 ## Refer: 
    https://github.com/scalar-labs/scalardl/blob/master/docs/getting-started.md#configure-properties
 
-> Optional. A hostname or an IP address of the server. Use localhost by default if not
->  specified.
->  It assumes that there is a single endpoint that is given by DNS or a load balancer.
+```bash
+#  Optional. A hostname or an IP address of the server. Use localhost by default if not
+#  specified.
+#  It assumes that there is a single endpoint that is given by DNS or a load balancer.
+scalar.dl.client.server.host=localhost
+#  Optional. A port number of the server. Use 50051 by default if not specified.
+scalar.dl.client.server.port=50051
 
-    scalar.dl.client.server.host=localhost
->  Optional. A port number of the server. Use 50051 by default if not specified.
+#  Optional. A port number of the server for privileged services. Use 50052 by default if not specified.
+scalar.dl.client.server.privileged_port=50052
 
-    scalar.dl.client.server.port=50051
+#  Required. The holder ID of a certificate.
+#  It must be configured for each private key and unique in the system.
+scalar.dl.client.cert_holder_id=client
 
->  Optional. A port number of the server for privileged services. Use 50052 by default if not specified.
->  scalar.dl.client.server.privileged_port=50052
+#  Optional. The version of the certificate. Use 1 by default if not specified.
+#  Use another bigger integer if you need to change your private key.
+scalar.dl.client.cert_version=1
 
->  Required. The holder ID of a certificate.
->  It must be configured for each private key and unique in the system.
+#  Required. The path of the certificate file.
+scalar.dl.client.cert_path=/path/to/client.pem
 
-    scalar.dl.client.cert_holder_id=client
+#  Required. The path of a corresponding private key file to the certificate.
+#  Exceptionally it can be empty in some requests to privileged services
+#  such as registerCertificate and registerFunction since they don't need a signature.
+scalar.dl.client.private_key_path=/path/to/client-key.pem
 
->  Optional. The version of the certificate. Use 1 by default if not specified.
->  Use another bigger integer if you need to change your private key.
-> scalar.dl.client.cert_version=1
+#  Optional. A flag to enable TLS communication. False by default.
+scalar.dl.client.tls.enabled=false
 
->  Required. The path of the certificate file.
+#  Optional. A custom CA root certificate for TLS communication.
+#  If the issuing certificate authority is known to the client, it can be empty.
+#  scalar.dl.client.tls.ca_root_cert_path=/path/to/ca-root-cert
 
-    scalar.dl.client.cert_path=/path/to/client.pem
+#  Optional. An authorization credential. (e.g. authorization: Bearer token)
+#  If this is given, clients will add "authorization: <credential>" http/2 header.
+#  scalar.dl.client.authorization.credential=credential
 
->  Required. The path of a corresponding private key file to the certificate.
->  Exceptionally it can be empty in some requests to privileged services
->  such as registerCertificate and registerFunction since they don't need a signature.
+#  Experimental. Proxy server
+#  scalar.dl.client.proxy.server=localhost:10051
+scalar.dl.client.auditor.enabled=true
+scalar.dl.client.auditor.host=localhost
 
-    scalar.dl.client.private_key_path=/path/to/client-key.pem
+scalar.dl.client.auditor.linearizable_validation.contract_id=validate-ledger-1
+```
 
->  Optional. A flag to enable TLS communication. False by default.
-
-    scalar.dl.client.tls.enabled=false
-
->  Optional. A custom CA root certificate for TLS communication.
->  If the issuing certificate authority is known to the client, it can be empty.
-> scalar.dl.client.tls.ca_root_cert_path=/path/to/ca-root-cert
-
->  Optional. An authorization credential. (e.g. authorization: Bearer token)
->  If this is given, clients will add "authorization: <credential>" http/2 header.
-> scalar.dl.client.authorization.credential=credential
-
->  Experimental. Proxy server
-> scalar.dl.client.proxy.server=localhost:10051
-
-    scalar.dl.client.auditor.enabled=true
-    scalar.dl.client.auditor.host=localhost
-
-    scalar.dl.client.auditor.linearizable_validation.contract_id=validate-ledger-1
-
- 
 ### As indicated above, the following properties are mentioned.
 
     scalar.dl.client.server.host, 
@@ -389,8 +376,8 @@ https://github.com/scalar-labs/scalardl-java-client-sdk/blob/master/src/main/jav
 
  
 ### Validate-ledger contract in the application
-
-    public class Validator extends JacksonBasedContract {
+```bash
+public class Validator extends JacksonBasedContract {
 
     static final String ASSET_ID_KEY = "asset_id";
     static final String AGE_KEY = "age";
@@ -430,9 +417,8 @@ https://github.com/scalar-labs/scalardl-java-client-sdk/blob/master/src/main/jav
         List<Asset<JsonNode>> assets = ledger.scan(filter);
         return null;
     }
-
-    }
-
+}
+```
 
 ### Process to setup the contracts
 
@@ -441,10 +427,12 @@ https://github.com/scalar-labs/scalardl-java-client-sdk/blob/master/src/main/jav
 2.	Then create contracts.toml to mention all contract-id, contract-binary-name, contract-class-file
 
 ### Ex
-    [[contracts]]
-    contract-id = "get-all-age"
-    contract-binary-name = "com.perceptproject.ScalarDBFileManagement.contracts.GetAllAge"
-    contract-class-file = "build/classes/java/main/com/perceptproject/ScalarDBFileManagement/contracts/GetAllAge.class"
+```bash
+[[contracts]]
+contract-id = "get-all-age"
+contract-binary-name = "com.perceptproject.ScalarDBFileManagement.contracts.GetAllAge"
+contract-class-file = "build/classes/java/main/com/perceptproject/ScalarDBFileManagement/contracts/GetAllAge.class"
+```
 
 Explanation: 
 
@@ -455,20 +443,21 @@ contract-binary-name :	mention binary name,
 contract-class-file:  		mention classpath
 
 3.	If there are functions in your applications,  create functions.toml
-
-         [[functions]]
-         function-id ="update-function"
-         function-binary-name = "com.perceptproject.ScalarDBFileManagement.functions.Update"
-         function-class-file ="build/classes/java/main/com/perceptproject/ScalarDBFileManagement/functions/Update.clas"
+```bash
+[[functions]]
+function-id ="update-function"
+function-binary-name = "com.perceptproject.ScalarDBFileManagement.functions.Update"
+function-class-file ="build/classes/java/main/com/perceptproject/ScalarDBFileManagement/functions/Update.clas"
+```
 
 4.	Create a ‘register’ file as below.
-
-        #!/bin/bash
-        ${SCALAR_SDK_HOME}/client/bin/register-cert --properties 
-        ./client.properties
-        ${SCALAR_SDK_HOME}/client/bin/register-contracts --properties ./client.properties --contracts-file ./path/to/contracts.toml
-        ${SCALAR_SDK_HOME}/client/bin/register-functions --properties ./client.properties --functions-file ./path/to/functions.toml
-
+```bash
+#!/bin/bash
+${SCALAR_SDK_HOME}/client/bin/register-cert --properties 
+ ./client.properties
+${SCALAR_SDK_HOME}/client/bin/register-contracts --properties ./client.properties --contracts-file ./path/to/contracts.toml
+${SCALAR_SDK_HOME}/client/bin/register-functions --properties ./client.properties --functions-file ./path/to/functions.toml
+```
 The contracts, functions and certificates to be registered are mentioned in the above file
 
 Note:  SCALAR_SDK_HOME is the path of Project, which has client sdk, client.properties.
@@ -483,14 +472,13 @@ provide a contract/list of contracts in a file such as contracts.toml and the cl
 provide a function/list of contracts in a file such as functions.toml and the client properties file to get register functions.
 
 5.	Execute the File using the below statement.
-
-        $ SCALAR_SDK_HOME=/mnt/d/GitWorkSpacePercept/ScalarDB-FileManagementGit/percept/ScalarDB-FileManagement ./register
-
+```bash
+$ SCALAR_SDK_HOME=/mnt/d/GitWorkSpacePercept/ScalarDB-FileManagementGit/percept/ScalarDB-FileManagement ./register
+```
 
 Refer:
 Writing contracts: ‘https://github.com/scalar-labs/scalardl/blob/master/docs/how-to-write-contract.md’
 
- 
 ## B. Functions used in application
 
 ### 1)	update-function
@@ -509,7 +497,7 @@ https://github.com/scalar-labs/scalardl/blob/master/docs/how-to-write-function.m
 Application used the below service to interact with scalatDL - connect bin
 
 To Execute the Client we are using ClientService
-
+```bash
     @Bean
     public ClientService getService() {
         ClientServiceFactory factory = new ClientServiceFactory();
@@ -524,7 +512,7 @@ To Execute the Client we are using ClientService
         return service;
     }
     //
-
+```
 
 
 
