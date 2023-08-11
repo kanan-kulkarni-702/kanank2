@@ -7,7 +7,7 @@ During registration, the user can set up his/her password with an email id. Ther
 
 It demonstrates the usage of ScalarDL for Byzantine Fault Detection.
 ## Scope
-Please click on the below mentioned links for the details.
+Technical documentations details are mentioned below. Please click on the below mentioned links.
 * [Rest Api](docs/File_Manager_Rest_API_Design.md)      
 * [UI Screens](docs/File_Manager_UI_screens.md)      
 * [High_Level_doc](docs/Filemanager_HL_Application_Document.md)      
