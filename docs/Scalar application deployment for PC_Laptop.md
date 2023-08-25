@@ -93,20 +93,21 @@ Please refer to the partial text  image of docker compose file for reference. Th
 
 ![compose_modification](/docs/assets/images/local_config/docker_compose_part.jpg)
 
-- A) Configuring the project for files stored in cloud:
-Open the docker-compose-ledger-auditor.yml  file in a simple text editor such as Notepad. Go to the following location as mentioned below
+  A) Configuring the project for files stored in cloud:    
+     Open the docker-compose-ledger-auditor.yml  file in a simple text editor such as Notepad. Go to the following location as mentioned below
 ```bash
     environment:
       - IS_ON_LOCAL_MACHINE=true
       - STORAGE_PROVIDER_TYPE=LOCAL 
 ```
-When the project is downloaded, above are the default settings, i.e file storage in local. Now change it as follows. Please do not add any unnecessary spaces before and after the = sign.
-bash```
+     When the project is downloaded, above are the default settings, i.e file storage in local. Now change it as follows. Please do not add any unnecessary spaces before and after the = sign.
+
+```bash
 	environment:
       - IS_ON_LOCAL_MACHINE=false
       - STORAGE_PROVIDER_TYPE=AWS_S3 
 ```
-- B) Configuring the project for files stored in local:
+  B) Configuring the project for files stored in local:
 This will be the default configuration when the project is downloaded, however if you have configured it for file storage on cloud and now would want 
 to change to file storage on local configure it as follows:
 ```bash
