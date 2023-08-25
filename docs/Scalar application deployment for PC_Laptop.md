@@ -136,6 +136,83 @@ Environment Variable: **STORAGE_PROVIDER_TYPE**
 
 This environment variable specifies the type of storage provider that the application will use to save files. It offers two options:
 
+**LOCAL**: When set to LOCAL, the application will utilize local storage for file storage purposes.
+
+**AWS_S3**: Alternatively, if set to AWS_S3, the application will employ Amazon Web Services' S3 (Simple Storage Service) for file storage.
+
+Configure above environment variable wisely,
+
+Run/execute the compose file as follows:
+docker  compose   -f   docker-compose-ledger-auditor.yml   up    -d
+- Ledger and auditor certificates have been registered with each other. So the ledger and auditor can talk.
+- Respective Schema has been loaded (as configured in compose file) in Ledger Container, Auditor Container
+- Multiple ports gets exposed like 9901,50051,50052(ledger-envoy) ,9902,40051,40052(scalar-envoy) and much more on that instance 
+- Once all Dockers are in either Created/Started/Healthy state, then can run the File Manager application from the Chrome browser.
+
+Following is the snapshot of  docker compose file execution after a few minutes.
+
+image: docker compose
+
+Once the command prompt returns after running the project’s docker compose file, run the following command after a few minutes.
+```bash
+docker    ps
+```
+image: docker up
+
+As seen from the above image there will be a total of 12 docker containers running. Ensure that 5 containers' status must be displayed 
+as (healthy) as shown in the STATUS column.
+
+## 9. Starting the application for the first time
+Once you have confirmed that your setup is complete properly as above, please start your application for the first time as below:
+Open windows command prompt as Administrator only. Go to the following location
+```bash
+      C:\Program Files\Google\Chrome\Application
+```
+
+Run following command
+```bash
+chrome.exe --disable-web-security --disable-gpu --user-data-dir=~/chromeTemp
+```
+From the newly opened Chrome browser session, enter the following link
+```bash
+     http://localhost/fmui-local/ 
+```
+
+Let the web page be displayed. Once the web page is displayed, then your first time setup process is completed. Shown below how the web page 
+will be displayed.
+
+image: scalar chrome.
+
+## 10. Executing the application from Chrome browser:
+Open windows command prompt as Administrator only. Go to the following location.
+```bash
+      C:\Program Files\Google\Chrome\Application
+```
+Run following command
+```bash
+     chrome.exe --disable-web-security --disable-gpu --user-data-dir=~/chromeTemp
+```
+From the newly opened Chrome browser session, enter the following link
+```bash
+    http://localhost/fmui-local/ 
+```
+If executing for the first time, then register and then login. Start using the application.
+
+## 11. Stopping the application:
+Go to the Scalar Demo Project folder from the Windows command prompt. Run the following command. This will shut down all the docker containers and free its memory. It is not necessary to start wsl.
+In case your application was started for LOCAL/AWS-S3 file storage, then run the following command for shutdown. 
+docker  compose  -f  docker-compose-ledger-auditor.yml  down  
+Alternatively, applications can be shutdown from wsl by going to the project folder’s location and using the above command. However, just prefix the command with sudo.
+
+## 12. Server deployment:
+As of now the front end and backend application is deployed on our AWS EC2 server. Also the files uploaded to the cloud via application deployed on our server are saved in our AWS S3 bucket.
+	In case you need to deploy the application to your hosted server, then we will have to give you the application configured to your AWS S3 bucket. Hence you need to have a server on cloud and a S3 bucket to store files remotely.
+
+
+
+
+
+
 
 
 
