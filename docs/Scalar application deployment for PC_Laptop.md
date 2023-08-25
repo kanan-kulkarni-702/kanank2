@@ -1,4 +1,4 @@
-# Scalar application deployment for PC_Laptop
+# Scalar application deployment for PC / Laptop
 
 ## 1. Prerequisites
 Laptop/PC memory to be 8GB minimum.
