@@ -89,7 +89,7 @@ Settings for local (default configured) or for cloud is changed in file docker-c
 In the above statement, … denotes the folder path where the downloaded project is copied to. Changing the settings is one time activity. 
 Please refer to the partial text  image of docker compose file for reference. The area of text which is to be changed is  highlighted in blue color.
 
-image to be added
+![compose_modification](/docs/assets/images/local_config/docker_compose_part.jpg)
 
 - A) Configuring the project for files stored in cloud:
 Open the docker-compose-ledger-auditor.yml  file in a simple text editor such as Notepad. Go to the following location as mentioned below
@@ -151,13 +151,13 @@ docker  compose   -f   docker-compose-ledger-auditor.yml   up    -d
 
 Following is the snapshot of  docker compose file execution after a few minutes.
 
-image: docker compose
+![dockercompose](/docs/assets/images/local_config/compose_file_up1.jpg)
 
 Once the command prompt returns after running the project’s docker compose file, run the following command after a few minutes.
 ```bash
 docker    ps
 ```
-image: docker up
+![dockercompose](/docs/assets/images/local_config/compose_file_up2.jpg)
 
 As seen from the above image there will be a total of 12 docker containers running. Ensure that 5 containers' status must be displayed 
 as (healthy) as shown in the STATUS column.
@@ -181,7 +181,7 @@ From the newly opened Chrome browser session, enter the following link
 Let the web page be displayed. Once the web page is displayed, then your first time setup process is completed. Shown below how the web page 
 will be displayed.
 
-image: scalar chrome.
+![chromepage](/docs/assets/images/local_config/web_display.jpg)
 
 ## 10. Executing the application from Chrome browser:
 Open windows command prompt as Administrator only. Go to the following location.
