@@ -198,7 +198,7 @@ will be displayed.
 
 ![chromepage](/docs/assets/images/local_config/web_display.jpg)
 
-## 11 Using your File Manager application
+## 11. Using your File Manager application
 Whenever you want to run the application, please perform following steps:
 
 Go to the projects folder as mentioned above and run the compose file in the following two steps.
