@@ -163,7 +163,7 @@ Following is the list of Rest APIs used for this application and their respectiv
 |18|moveItems|Move multiple files from source folder to destination folder.|No|No|
 |19|renameItem|Rename file or folder.|Yes|executeUpdateItemContractWithFunction|
 |20|hideItem|Hides file or folder in the system.|No|No|
-|21|validateItem|Validates file or folder for tampering.|No|No|
+|21|validateItem|Validates file or folder for tampering.|Yes|No|
 |22|getItemList|Gives all item list from given folder.|No|No|
 |23|addFolder|Create a new folder in the system.|No|No|
 |24|searchItem|Gives list of all items from a given folder by search string.|No|No|
