@@ -190,7 +190,7 @@ Open windows command prompt as Administrator only. Go to the following location.
 ```
 Run following command
 ```bash
-     chrome.exe --disable-web-security --disable-gpu --user-data-dir=~/chromeTemp
+          chrome.exe --disable-web-security --disable-gpu --user-data-dir=~/chromeTemp
 ```
 From the newly opened Chrome browser session, enter the following link
 ```bash
