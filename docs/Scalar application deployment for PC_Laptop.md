@@ -1,14 +1,14 @@
 # Scalar application deployment for PC / Laptop
 
 ## 1. Prerequisites
-Laptop/PC memory to be 8GB minimum.
-Internet connectivity till the setup is done.
-HDD/SDD 10GB free space.
-Virtualization to be enabled.
-wsl2 should be present on the local machine.
-PAT token creation.
-Docker Desktop installed.
-Access to Scalar’s Container Registry (GitHub container registry access).
+   1. Laptop/PC memory to be 8GB minimum.    
+   2. Internet connectivity till the setup is done.    
+   3. HDD/SDD 10GB free space.     
+   4. Virtualization to be enabled.    
+   5. wsl2 should be present on the local machine.    
+   6. PAT token creation.    
+   7. Docker Desktop installed.    
+   8. Access to Scalar’s Container Registry (GitHub container registry access).    
 
 ## 2. Virtualization
 Check if virtualization is enabled on your PC/Laptop. Simply press Ctrl + Shift + Esc keys to open the Task Manager. 
@@ -72,81 +72,93 @@ Download the Scalar Demo Project from GitHub.
 You can either clone the project from Github or download the zipped project from GitHub and unzip it. 
 https://github.com/PerceptCS/Scalar_Filemanager_Demo
 
-Move the downloaded project folder to another location of your choice.
-Once downloaded, run wsl. 
-From wsl  go to the Scalar Demo Project folder from root path and run the docker compose file as mentioned in the next sections. 
-This is one time activity only.
+Move the downloaded project folder to another location of your choice.     
+After download is complete, run wsl. 
 
-## 8. Starting containerised applications:
+From wsl  go to the Scalar Demo Project folder from the root path and run the docker compose file to do the application setup.
+
+The procedure to run the docker compose file is explained in the sections below.
+ 
+Please note that this activity needs to be done only for the first time. 
+
+## 8. Running docker compose file to setup Applications:
 
 Before Running compose file(i.e starting applications), we need to change two settings as below:
 
-These settings are for configuring the application for local storage or S3 storage.
+These settings are for configuring the application for local storage (configured as default in the file)  or for cloud storage (S3 storage).
+
 
 <ins>Changing the settings</ins>:
 Settings for local (default configured) or for cloud is changed in file docker-compose-ledger-auditor.yml which is located in the following folder path
 ```bash
 ....\Scalar_Filemanager_Demo-main\scalardl-samples-mysql-ledger-auditor
 ```
-In the above statement, … denotes the folder path where the downloaded project is copied to. Changing the settings is one time activity. 
-Please refer to the partial text  image of docker compose file for reference. The area of text which is to be changed is  highlighted in blue color.
+In the above statement, … denotes the folder path where the downloaded project is copied to.     
+Refer part of this file as below. The settings to be changed are highlighted.
 
 ![compose_modification](/docs/assets/images/local_config/docker_compose_part.jpg)
 
-  A) Configuring the project for files stored in cloud:    
+   Configuring the project for files stored in cloud:    
      Open the docker-compose-ledger-auditor.yml  file in a simple text editor such as Notepad. Go to the following location as mentioned below
 ```bash
     environment:
       - IS_ON_LOCAL_MACHINE=true
       - STORAGE_PROVIDER_TYPE=LOCAL 
 ```
-     When the project is downloaded, above are the default settings, i.e file storage in local. Now change it as follows. Please do not add any unnecessary spaces before and after the = sign.
+     When the project is downloaded, above are the default settings, i.e file storage in local. Now change it as follows. Please do not add 
+     any unnecessary spaces before and after the = sign.
 
 ```bash
-	environment:
+    environment:
       - IS_ON_LOCAL_MACHINE=false
       - STORAGE_PROVIDER_TYPE=AWS_S3 
 ```
-  B) Configuring the project for files stored in local:
-This will be the default configuration when the project is downloaded, however if you have configured it for file storage on cloud and now would want 
-to change to file storage on local configure it as follows:
-```bash
-    environment:
-      - IS_ON_LOCAL_MACHINE=true
-      - STORAGE_PROVIDER_TYPE=LOCAL 
-```
+**Note**:    
+       1. The default settings are for file storage on local device. This configuration is for running the applications on the desktop or laptop when there are internet connectivity restrictions.    
+       2. If you want to use cloud storage, the settings need to be changed as mentioned above.     
 
-Current the projects compose file uses default environment variables for  scalar_filemanager application that are shown below,
+## 9 Significance of the Environment Variables:
+The compose file of this project uses two environment variables for setting storage configuration.
      1) IS_ON_LOCAL_MACHINE=true 
      2) STORAGE_PROVIDER_TYPE=LOCAL
 
-Environment Variable: **IS_ON_LOCAL_MACHINE**
+A) Environment Variable: **IS_ON_LOCAL_MACHINE**
 
-This environment variable serves as an indicator of whether the application is running on a local system or not. Its purpose is to influence the behavior of the application based on its value.
+This environment variable serves as an indicator of whether the application is running on a local system or not. Its purpose is to influence the 
+behavior of the application based on its value.
 
 When **IS_ON_LOCAL_MACHINE** is set to true:
-Signup Without OTP Validation: The application will allow user sign-up without requiring OTP (One-Time Password) validation.
+Signup Without OTP Validation: The application will allow user sign-up without requiring OTP (One-Time Password) validation.   
 Internet Connectivity: It implies that the application might not have internet connectivity. Therefore, the process of sending email for OTP is bypassed.
-Fault Injection Limitation: The option to inject faults using changeFileOnS3 and fileURL in Scalar DB is unavailable in this mode.
 
-When **IS_ON_LOCAL_MACHINE** is set to false, the application operates under default conditions, which may include:
+Fault Injection Limitation: While performing Inject Fault operation, the following options to inject fault are not available:
+      1. File On S3    
+      2. File URL in scalar DB  
+
+
+When **IS_ON_LOCAL_MACHINE** is set to false, the application assumes internet connectivity , hence following points are assumed:
 
 Regular Signup with OTP Validation: User sign-up will follow the standard procedure, including OTP (One-Time Password) validation.
+
 Internet Connectivity: The application assumes internet connectivity and proceeds with sending OTP emails if required.
-Fault Injection Option: The option to inject faults using changeFileOnS3 and fileURL in Scalar DB may be available
 
-Environment Variable: **STORAGE_PROVIDER_TYPE**
+Fault Injection Option: All the options displayed on the Application UI are available.
 
-This environment variable specifies the type of storage provider that the application will use to save files. It offers two options:
+B) Environment Variable: **STORAGE_PROVIDER_TYPE**
 
-**LOCAL**: When set to LOCAL, the application will utilize local storage for file storage purposes.
+This environment variable specifies the type of storage provider that the application will use to save files. It offers two options:     
 
-**AWS_S3**: Alternatively, if set to AWS_S3, the application will employ Amazon Web Services' S3 (Simple Storage Service) for file storage.
+     **LOCAL**: When set to LOCAL, the application will utilize local storage for file storage purposes.  
+
+     **AWS_S3**: Alternatively, if you set to AWS_S3, the application will employ Amazon Web Services' S3 (Simple Storage Service) for file storage.
 
 Configure above environment variable wisely,
 
-Run/execute the compose file as follows:
+Then, Run/execute the compose file using command as :
+```bash
 docker  compose   -f   docker-compose-ledger-auditor.yml   up    -d
+```
+The following actions take place when the compose file is executed.
 - Ledger and auditor certificates have been registered with each other. So the ledger and auditor can talk.
 - Respective Schema has been loaded (as configured in compose file) in Ledger Container, Auditor Container
 - Multiple ports gets exposed like 9901,50051,50052(ledger-envoy) ,9902,40051,40052(scalar-envoy) and much more on that instance 
@@ -165,7 +177,7 @@ docker    ps
 As seen from the above image there will be a total of 12 docker containers running. Ensure that 5 containers' status must be displayed 
 as (healthy) as shown in the STATUS column.
 
-## 9. Starting the application for the first time
+## 10. Starting the application for the first time
 Once you have confirmed that your setup is complete properly as above, please start your application for the first time as below:
 Open windows command prompt as Administrator only. Go to the following location
 ```bash
@@ -186,39 +198,27 @@ will be displayed.
 
 ![chromepage](/docs/assets/images/local_config/web_display.jpg)
 
-## 10. Executing the application from Chrome browser:
-Open windows command prompt as Administrator only. Go to the following location.
+## 11 Using your File Manager application
+Whenever you want to run the application, please perform following steps:
+
+Go to the projects folder as mentioned above and run the compose file in the following two steps.
 ```bash
-      C:\Program Files\Google\Chrome\Application
+docker  compose   -f   docker-compose-ledger-auditor.yml   down
+```
+Wait for a few minutes till all dockers are shut down and then run the following command.
+```bash
+docker  compose   -f   docker-compose-ledger-auditor.yml   up    -d
+```
+Then execute the application from Chrome browser:
+Open windows command prompt as Administrator only. Go to the following location.
+```bash    
+     C:\Program Files\Google\Chrome\Application
 ```
 Run following command
-```bash
-          chrome.exe --disable-web-security --disable-gpu --user-data-dir=~/chromeTemp
+```bash    
+     chrome.exe --disable-web-security --disable-gpu --user-data-dir=~/chromeTemp
 ```
 From the newly opened Chrome browser session, enter the following link
-```bash
+```bash   
     http://localhost/fmui-local/ 
 ```
-If executing for the first time, then register and then login. Start using the application.
-
-## 11. Stopping the application:
-Go to the Scalar Demo Project folder from the Windows command prompt. Run the following command. This will shut down all the docker containers and free its memory. It is not necessary to start wsl.
-In case your application was started for LOCAL/AWS-S3 file storage, then run the following command for shutdown. 
-docker  compose  -f  docker-compose-ledger-auditor.yml  down  
-Alternatively, applications can be shutdown from wsl by going to the project folder’s location and using the above command. However, just prefix the command with sudo.
-
-## 12. Server deployment:
-As of now the front end and backend application is deployed on our AWS EC2 server. Also the files uploaded to the cloud via application deployed on our server are saved in our AWS S3 bucket.
-	In case you need to deploy the application to your hosted server, then we will have to give you the application configured to your AWS S3 bucket. Hence you need to have a server on cloud and a S3 bucket to store files remotely.
-
-
-
-
-
-
-
-
-
-
-
-
