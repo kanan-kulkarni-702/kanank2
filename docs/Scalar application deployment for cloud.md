@@ -174,3 +174,6 @@ From Chrome browser session, enter the following link
     http://ip-address/fmui-local/ 
 ```
 In above url, the 'ip-address' refers to the server ip address.
+
+Following image shows how login page looks.
+![chromepage](/docs/assets/images/local_config/web_display.jpg)
