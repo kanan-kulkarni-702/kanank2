@@ -1,60 +1,27 @@
-# Scalar application deployment for PC / Laptop
+# Scalar application deployment on cloud.
 
 ## 1. Prerequisites
-   1. Laptop/PC memory to be 8GB minimum.    
-   2. Internet connectivity till the setup is done.    
-   3. HDD/SDD 10GB free space.     
-   4. Virtualization to be enabled.    
-   5. wsl2 should be present on the local machine.    
-   6. PAT token creation.    
-   7. Docker Desktop installed.    
-   8. Access to Scalar’s Container Registry (GitHub container registry access).    
+   1. Server must be Ubuntu 20.04 minimum with minimum 4GB RAM. 
+   2. Access to server on cloud. 
+   3. Internet connectivity.    
+   4. HDD/SDD 10GB free space.     
+   5. PAT token creation.    
+   6. Docker installed on server.    
+   7. Access to Scalar’s Container Registry (GitHub container registry access).    
 
-## 2. Virtualization
-Check if virtualization is enabled on your PC/Laptop. Simply press Ctrl + Shift + Esc keys to open the Task Manager. 
-Click on the Performance tab and under CPU, you will find information about Virtualization on your desktop/laptop. 
-If it says Enabled, then Virtualization is turned on. Else follow the steps mentioned in 
-https://www.minitool.com/news/enable-virtualization-windows-10.html.
+## 2. Docker installation
+Install Docker for Ubuntu. This installation allows executing of Frontend and backend applications in containerized form. Pls refer to the following URL.
+https://docs.docker.com/engine/install/ubuntu/
 
-## 3. WSL installation: (Windows Subsystem for Linux)
-Command to install wsl:
-```bash
-wsl    --install    -d    Ubuntu-20.04
-```
-Restart your machine to complete installation. After restarting PC/Laptop, check the wsl version.
-```bash
-wsl  -l   -v
-```
-If under ‘Version’ it is displayed 1 for Ubuntu-20.04, then update to Version 2, using the following command
-```bash
-wsl    --set-version   Ubuntu-20.04    2
-```
-Once updated, update the wsl linux installation to the latest update by executing the following command assuming wsl is not running.
-```bash
-wsl
-sudo   apt-get   update
-```
-
-## 4. Docker installation
-Install Docker desktop. This installation allows executing of Front end and backend applications in containerized form. Pls refer to the following URL.
-https://docs.docker.com/desktop/install/windows-install/
-
-## 5. PAT token
+## 3. PAT token
 Please create a GitHub PAT token from your GitHub account. Refer to the following link.   
 Need to generate a Classic token with at least read access.
 https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens
 
-## 6. Client container registry login
-Open wsl on command prompt, if not already started. 
-This is required only once to fetch the Scalar docker images from Scalar’s GitHub container registry. 
-
+## 4. Client container registry login
 Please contact admin to check if you have requisite permission to access the Scalar’s GitHub container registry and refer above to generate your PAT token.
 
-Open wsl on command prompt as:
-```bash
-wsl
-```
-Logout of GitHub, if logged in earlier by entering the following command.
+Open linux terminal, logout of GitHub, if logged in earlier by entering the following command.
 ```bash
 docker logout ghcr.io
 ```
@@ -65,28 +32,21 @@ Login to Scalar’s Container Registry (Github) by executing following commands.
     echo  $CR_PAT |  sudo docker  login ghcr.io  -u {userName}  --password-stdin
 ```
 
-## 7. Project download
-
+## 5. Project download
 Download the Scalar Demo Project from GitHub. 
 
 You can either clone the project from Github or download the zipped project from GitHub and unzip it. 
 https://github.com/PerceptCS/Scalar_Filemanager_Demo
 
 Move the downloaded project folder to another location of your choice.     
-After download is complete, run wsl. 
 
-From wsl  go to the Scalar Demo Project folder from the root path and run the docker compose file to do the application setup.
+From terminal go to the Scalar Demo Project folder from the root path. 
 
-The procedure to run the docker compose file is explained in the sections below.
- 
-Please note that this activity needs to be done only for the first time. 
-
-## 8. Running docker compose file to setup Applications:
+## 6. Configuring docker compose file to setup Applications:
 
 Before Running compose file(i.e starting applications), we need to change two settings as below:
 
 These settings are for configuring the application for local storage (configured as default in the file)  or for cloud storage (S3 storage).
-
 
 <ins>Changing the settings</ins>:
 Settings for local (default configured) or for cloud is changed in file docker-compose-ledger-auditor.yml which is located in the following folder path
@@ -116,8 +76,12 @@ Refer part of this file as below. The settings to be changed are highlighted.
 **Note**:    
        1. The default settings are for file storage on local device. This configuration is for running the applications on the desktop or laptop when there are internet connectivity restrictions.    
        2. If you want to use cloud storage, the settings need to be changed as mentioned above.     
+	  
+   Configuring the UI docker image:
+   Referring to the image below, replace the default standard image with the image created specifically for the cloud IP address.
+![compose_modification2](/docs/assets/images/local_config/docker_compose_part2.jpg)	   
 
-## 9 Significance of the Environment Variables:
+## 7 Significance of the Environment Variables:
 The compose file of this project uses two environment variables for setting storage configuration.
      1) IS_ON_LOCAL_MACHINE=true 
      2) STORAGE_PROVIDER_TYPE=LOCAL
@@ -177,7 +141,19 @@ docker    ps
 As seen from the above image there will be a total of 12 docker containers running. Ensure that 5 containers' status must be displayed 
 as (healthy) as shown in the STATUS column.
 
-## 10. Using your File Manager application
+## 8 Before running the application
+   1. Assuming that the deployment is on AWS EC2 instance modify the security group to allow the following ports, 
+      80, 8092 and 8093.
+	  
+   2. At server, add an entry to the hosts file located in folder /etc as follows and save the file.
+      172.17.0.1   host.docker.internal   
+	  
+   3. Restart the server by running the following command.
+      sudo reboot +0
+	  
+   4. After few minutes when the server starts, login to the server and go to the location where the docker compose file is located.
+
+## 9 Using your File Manager application
 Whenever you want to run the application, please perform following steps:
 
 Go to the projects folder as mentioned above and run the compose file in the following two steps.
@@ -189,9 +165,8 @@ Wait for a few minutes till all dockers are shut down and then run the following
 docker  compose   -f   docker-compose-ledger-auditor.yml   up    -d
 ```
 
-From the newly opened Chrome browser session, enter the following link
-```bash   
-    http://localhost/fmui-local/ 
+From Chrome browser session, enter the following link
+```bash
+    http://ip-address/fmui-local/ 
 ```
-Following image shows how login page looks.
-![chromepage](/docs/assets/images/local_config/web_display.jpg)
+In above url, the 'ip-address' refers to the server ip address.
