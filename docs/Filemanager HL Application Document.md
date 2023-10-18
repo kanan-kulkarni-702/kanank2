@@ -120,8 +120,7 @@ Screen Navigation for Auditor user
 
 **Note**:
 * The auditor can view all the files and folders in the system.   
-* Can perform Copy and Move operation only on a faulty file. (File with Byzantine fault )  
-* Only an auditor can delete a BFD file.  
+* Only an auditor can delete a BFD file, BFD faulty file and inconsistent file.  
 
 Screen Navigation for general user   
 Refer : [UI_screens](/docs/File_Manager_UI_screens.md) for all the UI screens.    
