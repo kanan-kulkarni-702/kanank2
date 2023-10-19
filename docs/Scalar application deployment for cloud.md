@@ -145,8 +145,10 @@ as (healthy) as shown in the STATUS column.
    1. Assuming that the deployment is on AWS EC2 instance modify the security group to allow the following ports, 
       80, 8092 and 8093.
 	  
-   2. At server, add an entry to the hosts file located in folder /etc as follows and save the file.    
+   2. At server, add an entry to the hosts file located in folder /etc as follows and save the file. 
+      ```bash   
       172.17.0.1   host.docker.internal  
+	  ```
 	  
    3. Restart the server by running the following command.
       ```bash
