@@ -86,16 +86,16 @@ The compose file of this project uses two environment variables for setting stor
      1) IS_ON_LOCAL_MACHINE=true 
      2) STORAGE_PROVIDER_TYPE=LOCAL
 
-A) Environment Variable: **IS_ON_LOCAL_MACHINE**
+A) Environment Variable: **IS_ON_LOCAL_MACHINE**     
 
 This environment variable serves as an indicator of whether the application is running on a local system or not. Its purpose is to influence the 
 behavior of the application based on its value.
 
-When **IS_ON_LOCAL_MACHINE** is set to true:
+When **IS_ON_LOCAL_MACHINE** is set to true:      
 Signup Without OTP Validation: The application will allow user sign-up without requiring OTP (One-Time Password) validation.   
 Internet Connectivity: It implies that the application might not have internet connectivity. Therefore, the process of sending email for OTP is bypassed.
 
-Fault Injection Limitation: While performing Inject Fault operation, the following options to inject fault are not available:
+Fault Injection Limitation: While performing Inject Fault operation, the following options to inject fault are not available:     
       1. File On S3    
       2. File URL in scalar DB  
 
@@ -146,7 +146,7 @@ as (healthy) as shown in the STATUS column.
       80, 8092 and 8093.
 	  
    2. At server, add an entry to the hosts file located in folder /etc as follows and save the file.    
-     ```bash
+     ```bash    
       172.17.0.1   host.docker.internal  
      ```	  
 	  
