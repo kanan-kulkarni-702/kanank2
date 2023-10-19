@@ -147,7 +147,7 @@ as (healthy) as shown in the STATUS column.
 	  
    2. At server, add an entry to the hosts file located in folder /etc as follows and save the file.    
      ```bash    
-      172.17.0.1   host.docker.internal  
+     172.17.0.1   host.docker.internal  
      ```	  
 	  
    3. Restart the server by running the following command.
